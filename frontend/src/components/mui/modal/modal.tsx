@@ -1,4 +1,4 @@
-import { ModalComponentType } from '../../types/modal';
+import { ModalType } from '../../types/modal';
 import { ButtonComponent } from '../button/button';
 import './style.css';
 /**
@@ -6,12 +6,12 @@ import './style.css';
  * @param onClick click event
  * @returns DOMContent
  */
-export const ModalComponent: React.FC<ModalComponentType> = ({onClick}) => {
+export const ModalComponent: React.FC<ModalType> = ({onClick, modalText}) => {
   return (
     <div className='modal-main' onClick={onClick}>
       <div className='container'>
         <div className='contents'>
-          <p className='text'>hoge</p>
+          <p className='text' dangerouslySetInnerHTML={{__html: modalText}}></p>
           <div className='closeButton'>
             <ButtonComponent label='閉じる'></ButtonComponent>
           </div>

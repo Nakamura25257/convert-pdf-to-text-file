@@ -2,7 +2,8 @@ import './style.css';
 
 type ButtonPropsType = {
   label: string;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void | HTMLButtonElement | Promise<void>;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void | HTMLButtonElement | Promise<void> | Promise<string>;
+  classname?: string;
   disabled?: boolean;
 };
 
@@ -12,13 +13,13 @@ type ButtonPropsType = {
  * @param onclick click event
  * @returns JSX.Element
  */
-export const ButtonComponent: React.FC<ButtonPropsType>  = ({label, onClick, disabled = false}) => {
+export const ButtonComponent: React.FC<ButtonPropsType>  = ({label, onClick, classname, disabled = false}) => {
   return (
     <>
       {
       disabled ? 
-        <button className='button' disabled>{label}</button> :
-        <button className='button' onClick={onClick}>{label}</button>
+        <button className="button" disabled>{label}</button> :
+        <button className={classname ? "button ok-btn" : "button"}  onClick={onClick}>{label}</button>
       }
     </>
   )

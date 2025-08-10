@@ -1,21 +1,23 @@
 import React from 'react';
 import { ButtonComponent } from '../button/button';
 import './style.css';
-import { ModalComponentType } from '../../types/modal';
+import { UserDialogType } from '../../types/modal';
 
 /**
  * ユーザー選択用ダイアログ
  * @param onClick click event
  * @returns DOMContent
  */
-export const DialogComponent: React.FC<ModalComponentType> = () => {
+export const DialogComponent: React.FC<UserDialogType> = ({onClick, dialogText, onOKBtnClicked}) => {
+
   return (
-    <div className='modal-main' >
+    <div className='dialog-main' onClick={onClick}>
       <div className='container'>
         <div className='contents'>
-          <p className='text'>hoge</p>
-          <div className='closeButton'>
-            <ButtonComponent label='閉じる'></ButtonComponent>
+          <p className='text' dangerouslySetInnerHTML={{__html: dialogText}}></p>
+          <div className='closeButtonContainer'>
+            <ButtonComponent label='Cancel'></ButtonComponent>
+            <ButtonComponent label='OK' classname='ok-btn' onClick={onOKBtnClicked}></ButtonComponent>
           </div>
         </div>
       </div>

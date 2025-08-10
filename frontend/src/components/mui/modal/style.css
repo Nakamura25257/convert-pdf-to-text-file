@@ -21,7 +21,6 @@
 
 .contents {
   height: inherit;
-  position: relative;
 
   .closeButton {
     position: absolute;
