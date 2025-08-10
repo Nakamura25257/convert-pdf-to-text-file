@@ -3,7 +3,7 @@
 TODO：if any noise contained, would like to remove them.
 
 ## 技術スタック
-- Frontend
+- Frontend  
 ・TypeScript  
 ・React
 
