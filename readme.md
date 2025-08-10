@@ -1,11 +1,14 @@
 # 音声入力アプリ
-概要の通り
+概要の通り  
+TODO：if any noise contained, would like to remove them.
 
 ## 技術スタック
-- フロント
+- Frontend
+・TypeScript  
 ・React
 
-- バックエンド
-・Flask
-・SpeechRecognition
+- Backend  
+・Python  
+・Flask  
+・SpeechRecognition  
 ・PyAudio
