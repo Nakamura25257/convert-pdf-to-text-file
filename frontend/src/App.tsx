@@ -11,6 +11,10 @@ type hasMicType = {
   label: string;
 };
 
+type VoiceResType = {
+
+};
+
 function App() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalText, setModalText] = useState<string>('');
@@ -33,12 +37,26 @@ function App() {
       setModalText('音声入力を開始します。');
 
       // 音声解析
-
+      const result = voiceAPIFetch();
+      console.log('result', result);
     })
     .catch((error) => {
       console.error(error);
     });
   }
+
+  // API fetch
+  const voiceAPIFetch = async () => {
+    const url = 'http://localhost:5000/api/voice_input';
+    try {
+      const response = await fetch(url)
+      .then((data) => data.json());
+      console.log(response);
+    } catch(error) {
+      console.log('error', error);
+    }
+  }
+
 
   // マイク有無確認処理
   const checkMicrophone = async(): Promise<boolean> => {
