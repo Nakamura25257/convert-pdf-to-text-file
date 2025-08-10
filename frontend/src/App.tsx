@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './App.css';
 import { ButtonComponent } from './components/mui/button/button';
 import { ModalComponent } from './components/mui/modal/modal';
-import { DialogComponent } from './components/mui/dailog/dialog';
 
 // もう少し固くても良い
 type hasMicType = {
@@ -16,8 +15,6 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [modalText, setModalText] = useState<string>('');
   const [isPromiseBtn, setIsPromiseBtn] = useState<boolean>(false);
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-  const [dialogText, setDialogText] = useState<string>('');
 
   // 音声入力ボタン押下時処理
   const handleMicClick = async (): Promise<void> => {
@@ -34,8 +31,8 @@ function App() {
       setIsModalOpen(true);
       setIsPromiseBtn(true);
       setModalText('音声入力を開始します。');
-    })
-    .then(() => {
+
+      // 音声解析
 
     })
     .catch((error) => {
@@ -43,25 +40,12 @@ function App() {
     });
   }
 
-  // UserダイアログOKボタン押下時処理
-  const handleDialogOk = async (): Promise<void> => {
-    const result: boolean = await checkMicrophone();
-    if(!result) {
-      setIsModalOpen(true);
-      setModalText('マイクの接続ができませんでした。<br>設定を確認してください。')
-    }
-  }
-
-  /**
-   * マイク有無確認処理
-   */
+  // マイク有無確認処理
   const checkMicrophone = async(): Promise<boolean> => {
     try {
       const devices: MediaDeviceInfo[] = await navigator.mediaDevices.enumerateDevices();
       const hasMic: hasMicType | undefined = devices.find(device => device.kind === "audioinput");
 
-      // hasMicの型ががhasMicTypeかundefinedのため、hasMicが存在するかどうかでtrue/falseを返したい。
-      // truthy/falsyをboolean型に変換して返す 
       return !!hasMic;
     } catch(error: unknown) {
       setIsModalOpen(true);
@@ -78,23 +62,12 @@ function App() {
     if(className === 'modal-main' || className === 'button') {
       setIsModalOpen(false);
     }
-
-    if(className === 'dialog-main' || className === 'button') {
-      setIsDialogOpen(false);
-    }
   }
 
   return (
     <div className='main'>
-      {isDialogOpen && 
-        <DialogComponent 
-          onOKBtnClicked={handleDialogOk} 
-          onClick={outerModalClicked} 
-          dialogText={dialogText}
-        ></DialogComponent> 
-      }
       {isModalOpen &&
-          <ModalComponent onClick={outerModalClicked} modalText={modalText}></ModalComponent>
+        <ModalComponent onClick={outerModalClicked} modalText={modalText}></ModalComponent>
       }
       <ButtonComponent onClick={handleMicClick} label='マイクボタン(仮)'></ButtonComponent>
     </div>

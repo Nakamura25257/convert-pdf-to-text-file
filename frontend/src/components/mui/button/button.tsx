@@ -13,7 +13,8 @@ type ButtonPropsType = {
  * @param onclick click event
  * @returns JSX.Element
  */
-export const ButtonComponent: React.FC<ButtonPropsType>  = ({label, onClick, classname, disabled = false}) => {
+export const ButtonComponent: React.FC<ButtonPropsType>  = (props: ButtonPropsType) => {
+  const {label, onClick, classname, disabled = false} = props;
   return (
     <>
       {
