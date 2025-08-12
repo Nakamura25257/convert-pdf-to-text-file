@@ -1,7 +1,6 @@
-# 音声入力アプリ
+# 自動要約アプリ+類似文献検索ツール
 概要の通り  
-※機能テストを込みで実装しているのでUI/UX壊滅的です
-TODO：if any noise contained, would like to remove them.
+長い論文や記事のPDFをアップロードすると、要約を生成し内容をベクトル化。
 
 ## 技術スタック
 - Frontend  
@@ -13,3 +12,9 @@ TODO：if any noise contained, would like to remove them.
 ・Flask  
 ・SpeechRecognition  
 ・PyAudio
+
+## API  
+・PDF解析API
+・chatCompletionAPI
+・Embeddings API
+・外部文献API

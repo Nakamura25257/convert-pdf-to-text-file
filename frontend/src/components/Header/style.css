@@ -1,0 +1,20 @@
+.header {
+  width: 100%;
+  height: 40px;
+  background-color: rgba(106, 142, 234, 0.378);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .title {
+    font-weight: bold;
+  }
+
+  .authText {
+    font-size: 10px;
+    position: absolute;
+    right: 2%;
+    cursor: pointer;
+  }
+}

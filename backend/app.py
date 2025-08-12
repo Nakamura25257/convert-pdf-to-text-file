@@ -1,28 +1,41 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
-
-import speech_recognition as sr
+import pdfplumber
 
 app = Flask(__name__)
 CORS(app)
 
-# インスタンス作成
-r = sr.Recognizer()
-
-@app.route('/api/voice_input')
-def voice_input():
-  with sr.Microphone() as source:
-    print("話してください")
-    audio = r.listen(source)
-    text = r.recognize_google(audio, language="ja-JP")
-    print("認証結果", text)
-
-  return jsonify(text)
+# pdfからテキストを抽出
+@app.route('/pdf_analize', methods=['POST'])
+def pdf_analisys():
+  print('hoge', request.form)
 
 
+
+
+
+
+
+  return jsonify(message='hoge')
+
+
+# pdfからテキストを抽出(テスト実装)
 @app.route('/')
 def main():
-  return jsonify(message='home')
+  with pdfplumber.open('/Users/apple/Downloads/pdf_test.pdf')as pdf:
+    with open('output_text', 'w') as file:
+      for page in pdf.pages:
+        text = page.extract_text()
+        # テキストファイルを読み込む
+        if text:
+          file.write(text + '\n')
+          print(text)
+
+  return jsonify(message='hoge')
+        
+
+
+
 
 # このpyファイルが直接実行された時だけこの中の処理を行うという意味。→つまり、直接実行された場合はport: 5000でサーバーを起動する
 if __name__ == '__main__':
