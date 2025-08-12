@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
-import { Header } from './components/Header/Header';
-import { Login } from './components/Login/Login';
 import AuthPage from './pages/AuthPage';
+import { UploadImage } from './pages/Upload/UploadImage';
 
 function App() {
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleFetch = async () => {
     let formData: FormData = new FormData();
@@ -13,8 +12,6 @@ function App() {
     const url = 'http://localhost:5000/pdf_analize'
     try {
       formData.append('hoge', 'hogehoge');
-
-
       const res = await fetch(url, {
         method: 'POST',
         body: formData,
@@ -26,10 +23,9 @@ function App() {
     }
   }
 
-
   return (
     <div className='main'>
-      <AuthPage />
+      {isLoggedIn ? <UploadImage /> : <AuthPage /> }
     </div>
   );
 }

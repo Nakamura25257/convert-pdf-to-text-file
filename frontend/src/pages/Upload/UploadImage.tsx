@@ -1,5 +1,5 @@
 export const UploadImage: React.FC = () => {
   return (
-    <div></div>
+    <div>Upload any PDF file here</div>
   )
 }
