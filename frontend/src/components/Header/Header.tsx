@@ -12,8 +12,6 @@ export const Header: React.FC<LoginType> = (props) => {
   return (
     <div className='header'>
       <p className='title'>{title}</p>
-
-      {/* TODO：動的に変更する */}
       <p className='authText' onClick={onSwitch}>{authText}</p>
     </div>
   )
