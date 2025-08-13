@@ -20,8 +20,13 @@
   left: 0;
 }
 
+.fileName {
+  margin-top: 3%;
+  text-align: center;
+}
+
 .modal-btns {
-  margin-top: 18%;
+  margin-top: 6% !important;
 }
 
 .title {
