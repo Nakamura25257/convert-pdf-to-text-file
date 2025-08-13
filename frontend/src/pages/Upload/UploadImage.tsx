@@ -1,9 +1,10 @@
-import { ChangeEvent, ChangeEventHandler, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Header } from '../../components/Header/Header';
 import { Modal } from '../../components/Modal/Modal';
-import useAuthForm from '../../hooks/useAuthForm';
 import './style.css';
 import useModal from '../../hooks/useModal';
+import { ExtractRedType } from '../../types/extract';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * pdfアップロード画面
@@ -11,6 +12,9 @@ import useModal from '../../hooks/useModal';
 export const UploadImage: React.FC = () => {
   const [modalText, setModalText] = useState<string>('');
   const [file, setFile] = useState<File | null>(null);
+  const [extractedText, setExtractedText] = useState<string>('');
+  const navigate = useNavigate();
+
   // モーダル開閉
   const { open, close, isModalOpen } = useModal();
 
@@ -29,14 +33,19 @@ export const UploadImage: React.FC = () => {
     // API fetch 処理
     const url = 'http://localhost:5000/upload';
     try {
-      const res = await fetch(url, {
+      const res: Response = await fetch(url, {
         method: 'POST',
         body: formData,
       });
-      console.log('res', res);
+      const data: ExtractRedType = await res.json();
+
+      if(res.status === 200) {
+        setExtractedText(data.message);
+        navigate('/result');
+      }
     } catch (error) {
       console.error(error);
-    }
+    };
   };
 
   const onChangeFile = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -45,7 +54,7 @@ export const UploadImage: React.FC = () => {
       setFile(file);
       setModalText('以下のPDFをテキストへ変換します。<br> よろしいですか？')
     }
-  }
+  };
 
   return (
     <div className='uploadMain'>
@@ -59,7 +68,7 @@ export const UploadImage: React.FC = () => {
             type="file"
             className='fileInput'
             onChange={onChangeFile}
-            // accept='.pdf'
+            accept='.pdf'
           />
         </label>
       </div>

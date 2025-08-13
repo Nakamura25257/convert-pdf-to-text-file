@@ -1,4 +1,3 @@
-import useModal from '../../hooks/useModal';
 import './style.css';
 
 interface ModalProps {
@@ -15,7 +14,7 @@ export const Modal: React.FC<ModalProps> = (props) => {
     const ele = e.target as HTMLDivElement;
     const currentTarget = e.currentTarget as HTMLDivElement;
     if(ele === currentTarget) onCancel();
-  }
+  };
 
   return (
     <div className='modalWrapper' onClick={handleModal}>
