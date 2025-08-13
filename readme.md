@@ -12,7 +12,7 @@
 ・Flask  
 
 ## API  
-・PDF解析API
-・chatCompletionAPI
-・Embeddings API
-・外部文献API
+・PDF解析API  
+・chatCompletionAPI  
+・Embeddings API  
+・外部文献API  

@@ -11,7 +11,7 @@ function App() {
 
     <div className='main'>
       <Routes>
-        <Route path='/' element={isLoggedIn? <UploadImage /> : <AuthPage />}></Route>
+        <Route path='/' element={isLoggedIn ? <UploadImage /> : <AuthPage />}></Route>
         <Route path='/result' element={<PdfUpload />}></Route>
       </Routes>
     </div>
