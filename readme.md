@@ -10,8 +10,6 @@
 - Backend  
 ・Python  
 ・Flask  
-・SpeechRecognition  
-・PyAudio
 
 ## API  
 ・PDF解析API
