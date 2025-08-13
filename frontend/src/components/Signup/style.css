@@ -49,6 +49,7 @@
   color: #ededed;
   font-weight: 600;
   letter-spacing: 1px;
+  cursor: pointer;
 }
 
 .signUpBtn:hover {

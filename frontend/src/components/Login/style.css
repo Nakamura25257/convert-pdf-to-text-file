@@ -27,7 +27,7 @@
 
 .signupText {
   font-size: 12px;
-  color: #6a6a6a;
+  color: #7eb6ed;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,6 +49,7 @@
   color: #ededed;
   font-weight: 600;
   letter-spacing: 1px;
+  cursor: pointer;
 }
 
 .loginBtn:hover {
