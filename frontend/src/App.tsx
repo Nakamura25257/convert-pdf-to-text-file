@@ -4,7 +4,7 @@ import AuthPage from './pages/AuthPage';
 import { UploadImage } from './pages/Upload/UploadImage';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleFetch = async () => {
     let formData: FormData = new FormData();
