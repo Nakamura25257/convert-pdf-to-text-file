@@ -6,7 +6,7 @@
 .uploadContainer {
   background-color: rgb(251, 243, 233);
   border-radius: 5px;
-  margin: 3% auto;
+  margin: 13% auto 0 auto;
   width: 500px;
   height: 200px;
   display: flex;

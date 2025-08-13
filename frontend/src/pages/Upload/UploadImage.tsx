@@ -1,20 +1,35 @@
+import { useState } from 'react';
 import { Header } from '../../components/Header/Header';
+import { Modal } from '../../components/Modal/Modal';
 import useAuthForm from '../../hooks/useAuthForm';
 import './style.css';
+import useModal from '../../hooks/useModal';
+
+interface ModalProps {
+  open(): (() => void);
+  close(): (() => void);
+}
 
 /**
  * pdfアップロード画面
  */
 export const UploadImage: React.FC = () => {
-  const { isLogin, switchForm } = useAuthForm();
+  // モーダル開閉
+  const { open, close, isModalOpen } = useModal();
 
   // TODO：Logout処理
   const handleLogout = (): void => {
     console.log('logout');
   };
 
+  const handleConvertPdf = () => {
+    // API fetch 処理
+  };
+
+
   return (
     <div className='uploadMain'>
+      {isModalOpen && <Modal onConfirm={handleConvertPdf} onCancel={close}/>}
       <Header title='Upload PDF' authText='Logout' onSwitch={handleLogout} />
       {/* would like to upload image by drag&drop */}
       <div className='uploadContainer'>
@@ -29,8 +44,7 @@ export const UploadImage: React.FC = () => {
       </div>
 
       <div className='btnContainer'>
-        <button className='btn cancel-btn'>Cancel</button>
-        <button className='btn upload-btn'>Upload</button>
+        <button className='btn upload-btn' onClick={open}>Upload</button>
       </div>
     </div>
   )
