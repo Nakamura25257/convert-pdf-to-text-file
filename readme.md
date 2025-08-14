@@ -4,8 +4,11 @@
 
 ## 技術スタック
 - Frontend  
+・HTML  
+・CSS  
 ・TypeScript  
-・React
+・React  
+・Redux
 
 - Backend  
 ・Python  
