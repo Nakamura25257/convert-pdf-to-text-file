@@ -8,7 +8,7 @@ import { PdfUpload } from './pages/PdfResult/PdfUploadPage';
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   return (
-
+    
     <div className='main'>
       <Routes>
         <Route path='/' element={isLoggedIn ? <UploadImage /> : <AuthPage />}></Route>

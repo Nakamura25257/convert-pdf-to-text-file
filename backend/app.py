@@ -8,14 +8,14 @@ CORS(app)
 # pdfからテキストを抽出
 @app.route('/upload', methods=['POST'])
 def pdf_analisys():
-  all_text = ''
+  all_text = []
   file = request.files['file']
   with pdfplumber.open(file) as pdf:
     for page in pdf.pages:
+      # PDFをテキストへ変換；extract_text
       text = page.extract_text()
       if text:
-        all_text += text
-
+        all_text.append(text.split('\n'))
   return jsonify(message=all_text)
 
 if __name__ == '__main__':

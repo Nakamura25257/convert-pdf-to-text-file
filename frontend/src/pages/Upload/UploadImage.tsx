@@ -5,6 +5,8 @@ import './style.css';
 import useModal from '../../hooks/useModal';
 import { ExtractRedType } from '../../types/extract';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setData } from '../../redux/dataSlice';
 
 /**
  * pdfアップロード画面
@@ -12,8 +14,8 @@ import { useNavigate } from 'react-router-dom';
 export const UploadImage: React.FC = () => {
   const [modalText, setModalText] = useState<string>('');
   const [file, setFile] = useState<File | null>(null);
-  const [extractedText, setExtractedText] = useState<string>('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // モーダル開閉
   const { open, close, isModalOpen } = useModal();
@@ -24,12 +26,12 @@ export const UploadImage: React.FC = () => {
   };
 
   // PDFをテキストへ変換処理
-  const handleConvertPdf = async () => {
-    if(!file) {
-      return;
-    }
+  const handleConvertPdf = async(): Promise<void> => {
+    if(!file) return;
+
     const formData = new FormData();
     formData.append('file', file);
+
     // API fetch 処理
     const url = 'http://localhost:5000/upload';
     try {
@@ -40,7 +42,8 @@ export const UploadImage: React.FC = () => {
       const data: ExtractRedType = await res.json();
 
       if(res.status === 200) {
-        setExtractedText(data.message);
+        // reduxのstoreに格納
+        dispatch(setData(data.message));
         navigate('/result');
       }
     } catch (error) {
